@@ -1,5 +1,7 @@
 package Server;
 
+import threadpool.ThreadPool;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ public class ClientHandler implements Runnable {
     private Socket socket;
     private int clientNumber;
 
+
     public ClientHandler(Socket socket, int count) {
         this.socket = socket;
         this.clientNumber = count;
@@ -19,9 +22,9 @@ public class ClientHandler implements Runnable {
     public void run() {
         try {
             DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
-            System.out.println(" Socket " + socket + " client" + clientNumber);
+            System.out.println(" Socket " + socket + " client" + clientNumber + " Thread" + Thread.currentThread().getName());
             try {
-                Thread.sleep(8000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
